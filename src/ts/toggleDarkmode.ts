@@ -9,7 +9,7 @@ export function toggleLightMode() {
     console.log("mörkt läge");
   } else {
     toggleLightModeButton.innerHTML = "Välj ljust läge";
-    console.og("ljust läge");
+    console.log("ljust läge");
   }
 }
 
