@@ -5,6 +5,7 @@ export async function getPodcasts() {
     .then((data) => data.json())
     .then((json) => json)
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.error("nått blev fel:", error);
       return null;
     });

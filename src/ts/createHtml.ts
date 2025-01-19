@@ -1,24 +1,39 @@
 import { getPodcasts } from "./api";
 
-const podCastContainer = document.querySelector(".section__podlist-pods");
+const podCastContainer = document.querySelector(
+  ".section__podlist-pods",
+) as HTMLElement;
 
-let i = 0;
+if (!podCastContainer) {
+  // eslint-disable-next-line no-console
+  console.error("Container element not found!");
+  throw new Error("Unable to find container for podcasts.");
+}
 
-export async function createHtml() {
-  const podCasts = await getPodcasts();
+interface IPodcast {
+  programurl: string;
+  socialimage: string;
+  description: string;
+  name: string;
+}
+
+interface IPodcastsResponse {
+  programs: IPodcast[];
+}
+
+export async function createHtml(): Promise<void> {
+  const podCasts: IPodcastsResponse = await getPodcasts();
+
   podCasts.programs.forEach((podcast) => {
-    i++;
     const innerArticle = createInnerArticle();
+    const textDiv = createTextDiv(innerArticle);
 
-    createImg();
+    createImg(podcast, innerArticle);
+    createHeader(podcast, textDiv);
+    createP(podcast, textDiv);
+    createLink(podcast, textDiv);
 
-    const textDiv = createTextDiv();
-
-    createHeader();
-    createP();
-    createLink();
-
-    function createInnerArticle() {
+    function createInnerArticle(): HTMLElement {
       const innerArticle = document.createElement("article");
       innerArticle.setAttribute("class", "section__article-innerarticle");
       innerArticle.setAttribute("tabindex", "1");
@@ -26,41 +41,41 @@ export async function createHtml() {
       return innerArticle;
     }
 
-    function createTextDiv() {
+    function createTextDiv(parent: HTMLElement): HTMLElement {
       const textDiv = document.createElement("div");
       textDiv.setAttribute("class", "section__article-div");
-      innerArticle.appendChild(textDiv);
+      parent.appendChild(textDiv);
       return textDiv;
     }
 
-    function createLink() {
+    function createLink(podcast: IPodcast, parent: HTMLElement): void {
       const linkPlacement = document.createElement("a");
       const linkText = document.createTextNode("Lyssna här");
-      linkPlacement.setAttribute("href", podCasts.programs[i].programurl);
+      linkPlacement.setAttribute("href", podcast.programurl);
       linkPlacement.setAttribute("tabindex", "1");
       linkPlacement.appendChild(linkText);
-      textDiv.appendChild(linkPlacement);
+      parent.appendChild(linkPlacement);
     }
-    function createImg() {
-      const imgPlacement = document.createElement("IMG");
-      imgPlacement.setAttribute("src", podCasts.programs[i].socialimage);
+    function createImg(podcast: IPodcast, parent: HTMLElement): void {
+      const imgPlacement = document.createElement("img");
+      imgPlacement.setAttribute("src", podcast.socialimage);
       imgPlacement.setAttribute("width", "100");
       imgPlacement.setAttribute("height", "100");
-      innerArticle.appendChild(imgPlacement);
+      parent.appendChild(imgPlacement);
     }
 
-    function createP() {
+    function createP(podcast: IPodcast, parent: HTMLElement): void {
       const descPlacement = document.createElement("p");
-      const desc = document.createTextNode(podCasts.programs[i].description);
+      const desc = document.createTextNode(podcast.description);
       descPlacement.appendChild(desc);
-      textDiv.appendChild(descPlacement);
+      parent.appendChild(descPlacement);
     }
 
-    function createHeader() {
+    function createHeader(podcast: IPodcast, parent: HTMLElement): void {
       const headerPlacement = document.createElement("h2");
-      const programName = document.createTextNode(podCasts.programs[i].name);
+      const programName = document.createTextNode(podcast.name);
       headerPlacement.appendChild(programName);
-      textDiv.appendChild(headerPlacement);
+      parent.appendChild(headerPlacement);
     }
   });
 }
