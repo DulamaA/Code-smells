@@ -19,4 +19,4 @@ export function toggleLightMode(): void {
   }
 }
 
-//export default toggleLightMode;
+export default toggleLightMode;
