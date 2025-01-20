@@ -26,3 +26,25 @@ VG
 - [ ] Läs av utvecklingsmiljön
 - [ ] Enhetlig syntax i CSS:en
 - [ ] Publicera sidan på GitHub pages
+
+Om projekt:
+
+## Titel och beskrivning
+
+"SR Humorprogram" projekt är en sida som presenterar en lista över humor program från Sveriges radio där du kan välja vilket program du vill lyssna på när du väljer att dirigeras direkt till sidan för det programmet.
+
+## Teknologier
+
+Den är byggt med Vite, ESlint, Prettier, Sass, TypeScript, API, Node.js, HTML och CSS.
+
+## Användning
+
+- Sida har två temaalternativ, ett ljus och ett mörkt, som fungerar genom funktionaliteten hos en knapp för att växla mellan dem.
+
+## a11y och skärmdumpar
+
+- Sida är byggd responsive och ser ut så:
+
+![Skärmdump av projektet](assets/images/dark_screenshot.png)
+![Skärmdump av projektet](assets/images/ljus_screenshot.png)
+![Skärmdump av projektet](assets/images/mobil_screenshot.png)
