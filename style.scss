@@ -1,3 +1,4 @@
+//----------base scss--------------------------
 body {
   font-family: "Source Sans Pro", sans-serif;
   line-height: 1.5;
@@ -13,29 +14,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-.section__article-innerarticle {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 2rem;
-}
 
-.section__article-div {
-  display: inline-flex;
-  flex-direction: column;
-  margin-top: 0;
-  margin-left: 1rem;
-}
 img {
   margin-top: 0.5rem;
 }
+
 h1 {
   font-size: 40px;
   text-align: center;
 }
+
 h2 {
   font-size: 1.25rem;
   margin: 0;
 }
+
 p {
   font-size: 1rem;
   margin: 0;
@@ -49,6 +42,7 @@ a:hover {
   color: rgb(85, 85, 218);
 }
 
+//----dark mode style-------------------------------
 .darkmode {
   background-color: antiquewhite;
   color: #242424;
@@ -60,6 +54,23 @@ a:hover {
 .darkmode a:hover {
   color: rgb(85, 85, 218);
 }
+
+//-----components-------------------------------------
+
+.section__article-innerarticle {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
+.section__article-div {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 0;
+  margin-left: 1rem;
+}
+
+//------responsive scss--------------------------------
 @media screen and (min-width: 1000px) {
   .section__podlist-pods {
     display: grid;
