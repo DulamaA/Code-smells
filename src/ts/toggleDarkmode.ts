@@ -11,11 +11,11 @@ export function toggleLightMode(): void {
   if (document.body.classList.contains("darkmode")) {
     toggleLightModeButton.innerHTML = "Välj mörkt läge";
     // eslint-disable-next-line no-console
-    console.log("mörkt läge");
+    console.log("Mörkt läge");
   } else {
     toggleLightModeButton.innerHTML = "Välj ljust läge";
     // eslint-disable-next-line no-console
-    console.log("ljust läge");
+    console.log("Ljust läge");
   }
 }
 

@@ -2,14 +2,14 @@ G
 
 - [x ] Få projektet att funka
 - [x ] CSS till Sass
-- [ ] Enhetlig namngivning i CSS:en
+- [x ] Enhetlig namngivning i CSS:en
 - [x ] Konvertera till TypeScript
 - [x ] Enhetlig kodkvalitet
-- [ ] Mobilvyn
-- [ ] Språk
+- [x ] Mobilvyn
+- [x ] Språk
 - [ ] Rensa loggning
-- [ ] Dokumentation
-- [ ] Tillgänglighet (bilder)
+- [x ] Dokumentation
+- [x ] Tillgänglighet (bilder)
 - [ ] Refaktorera funktioner
 - [ ] Eliminera onödig kod
 - [ ] Rensa bort kod som inte ska sättas
@@ -25,7 +25,7 @@ VG
 - [ ] Gör en Lighthouse-analys
 - [ ] Läs av utvecklingsmiljön
 - [ ] Enhetlig syntax i CSS:en
-- [ ] Publicera sidan på GitHub pages
+- [ x] Publicera sidan på GitHub pages
 
 Om projekt:
 
