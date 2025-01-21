@@ -59,6 +59,7 @@ export async function createHtml(): Promise<void> {
     function createImg(podcast: IPodcast, parent: HTMLElement): void {
       const imgPlacement = document.createElement("img");
       imgPlacement.setAttribute("src", podcast.socialimage);
+      imgPlacement.setAttribute("alt", podcast.name || "Podcast-bild");
       imgPlacement.setAttribute("width", "100");
       imgPlacement.setAttribute("height", "100");
       parent.appendChild(imgPlacement);
