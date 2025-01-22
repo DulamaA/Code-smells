@@ -1,0 +1,10 @@
+@media screen and (min-width: 1440px) {
+  .section__podlist-pods {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+}
