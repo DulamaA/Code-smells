@@ -25,7 +25,7 @@ export async function createHtml() {
 
   // Iterera över poddlistan och skapa artiklar
   podCasts.programs.forEach((podcast: IPodcast) => {
-    if (!isValidPodcast(podcast)) {
+    if (!isPodcastValid(podcast)) {
       // eslint-disable-next-line no-console
       console.warn("Hoppade över podcast med saknade fält", podcast);
       return;
@@ -34,47 +34,47 @@ export async function createHtml() {
   });
 }
 
-function isValidPodcast(podcast: IPodcast): boolean {
-  return podcast.socialimage &&
+function isPodcastValid(podcast: IPodcast): boolean {
+  return !!(
+    podcast.socialimage &&
     podcast.name &&
     podcast.description &&
     podcast.programurl
-    ? true
-    : false;
+  );
 }
 
 function createPodcastElement(podcast: IPodcast, container: HTMLElement): void {
-  const innerArticle = createInnerArticle();
+  const articleElement = createArticleElement();
 
-  const textDiv = createTextDiv();
-  const img = createImage(
+  const textContainer = createTextContainer();
+  const imageElement = createImageElement(
     podcast.socialimage,
     `Bild för podcasten ${podcast.name}`,
   );
-  const header = createHeader(podcast.name);
-  const description = createDescription(podcast.description);
-  const link = createLink(podcast.programurl);
+  const headerElement = createHeaderElement(podcast.name);
+  const descriptionElement = createDescriptionElement(podcast.description);
+  const linkElement = createLinkElement(podcast.programurl);
 
   // Montera element
-  textDiv.append(header, description, link);
-  innerArticle.append(img, textDiv);
-  container.appendChild(innerArticle);
+  textContainer.append(headerElement, descriptionElement, linkElement);
+  articleElement.append(imageElement, textContainer);
+  container.appendChild(articleElement);
 }
 
-function createInnerArticle(): HTMLElement {
+function createArticleElement(): HTMLElement {
   const article = document.createElement("article");
   article.className = "section__article-innerarticle";
 
   return article;
 }
 
-function createTextDiv(): HTMLElement {
+function createTextContainer(): HTMLElement {
   const div = document.createElement("div");
   div.className = "section__article-div";
   return div;
 }
 
-function createImage(src: string, alt: string): HTMLImageElement {
+function createImageElement(src: string, alt: string): HTMLImageElement {
   const img = document.createElement("img");
   img.src = src;
   img.alt = alt;
@@ -84,19 +84,19 @@ function createImage(src: string, alt: string): HTMLImageElement {
   return img;
 }
 
-function createHeader(title: string): HTMLElement {
+function createHeaderElement(title: string): HTMLElement {
   const header = document.createElement("h2");
   header.textContent = title;
   return header;
 }
 
-function createDescription(description: string): HTMLElement {
-  const desc = document.createElement("p");
-  desc.textContent = description;
-  return desc;
+function createDescriptionElement(description: string): HTMLElement {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = description;
+  return paragraph;
 }
 
-function createLink(url: string): HTMLAnchorElement {
+function createLinkElement(url: string): HTMLAnchorElement {
   const link = document.createElement("a");
   link.href = url;
   link.textContent = "Lyssna här";
