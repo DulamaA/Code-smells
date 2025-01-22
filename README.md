@@ -63,9 +63,9 @@ Projekten är byggt med:
 
 - Sida är byggd responsive och ser ut så:
 
-![Skärmdump av projektet](assets/images/dark_screenshot.png)
-![Skärmdump av projektet](assets/images/ljus_screenshot.png)
-![Skärmdump av projektet](assets/images/mobil_screenshot.png)
+![Skärmdump av projektet](public/images/dark_screenshot.png)
+![Skärmdump av projektet](public/images/ljus_screenshot.png)
+![Skärmdump av projektet](public/images/mobil_screenshot.png)
 
 ## Installation
 
