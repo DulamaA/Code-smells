@@ -33,13 +33,31 @@ Om projekt:
 
 "SR Humorprogram" projekt är en sida som presenterar en lista över humor program från Sveriges radio där du kan välja vilket program du vill lyssna på när du väljer att dirigeras direkt till sidan för det programmet.
 
-## Teknologier
-
-Den är byggt med Vite, ESlint, Prettier, Sass, TypeScript, API, Node.js, HTML och CSS.
-
 ## Användning
 
 - Sida har två temaalternativ, ett ljus och ett mörkt, som fungerar genom funktionaliteten hos en knapp för att växla mellan dem.
+
+## Teknologier
+
+Projekten är byggt med:
+
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+
+![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+
+![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
+
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 
 ## a11y och skärmdumpar
 
@@ -48,3 +66,19 @@ Den är byggt med Vite, ESlint, Prettier, Sass, TypeScript, API, Node.js, HTML o
 ![Skärmdump av projektet](assets/images/dark_screenshot.png)
 ![Skärmdump av projektet](assets/images/ljus_screenshot.png)
 ![Skärmdump av projektet](assets/images/mobil_screenshot.png)
+
+## Installation
+
+Installera projekten med npm
+
+```bash
+  npm install
+```
+
+## Köra tester
+
+Om du vill köra tester kör du följande kommando för Vite
+
+```bash
+  npm run dev
+```

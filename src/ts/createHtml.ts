@@ -1,84 +1,107 @@
 import { getPodcasts } from "./api";
+import { IPodcast, IPodcastsResponse } from "./interfaces";
 
-const podCastContainer = document.querySelector(
-  ".section__podlist-pods",
-) as HTMLElement;
+export async function createHtml() {
+  const podCastContainer = document.querySelector(
+    ".section__podlist-pods",
+  ) as HTMLElement | null;
 
-if (!podCastContainer) {
-  // eslint-disable-next-line no-console
-  console.error("Container element not found!");
-  throw new Error("Unable to find container for podcasts.");
-}
+  if (!podCastContainer) {
+    // eslint-disable-next-line no-console
+    console.error("Podcast containern hittades inte.");
+    return; // Avbryt funktionen om containern saknas
+  }
 
-interface IPodcast {
-  programurl: string;
-  socialimage: string;
-  description: string;
-  name: string;
-}
+  let podCasts: IPodcastsResponse;
 
-interface IPodcastsResponse {
-  programs: IPodcast[];
-}
+  try {
+    // Försök att hämta data från API
+    podCasts = await getPodcasts();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Kunde inte hämta data från API", error);
+    return; // Avbryt om API-anropet misslyckas
+  }
 
-export async function createHtml(): Promise<void> {
-  const podCasts: IPodcastsResponse = await getPodcasts();
-
-  podCasts.programs.forEach((podcast) => {
-    const innerArticle = createInnerArticle();
-    const textDiv = createTextDiv(innerArticle);
-
-    createImg(podcast, innerArticle);
-    createHeader(podcast, textDiv);
-    createP(podcast, textDiv);
-    createLink(podcast, textDiv);
-
-    function createInnerArticle(): HTMLElement {
-      const innerArticle = document.createElement("article");
-      innerArticle.setAttribute("class", "section__article-innerarticle");
-      innerArticle.setAttribute("tabindex", "1");
-      podCastContainer.appendChild(innerArticle);
-      return innerArticle;
+  // Iterera över poddlistan och skapa artiklar
+  podCasts.programs.forEach((podcast: IPodcast) => {
+    if (!isPodcastValid(podcast)) {
+      // eslint-disable-next-line no-console
+      console.warn("Hoppade över podcast med saknade fält", podcast);
+      return;
     }
-
-    function createTextDiv(parent: HTMLElement): HTMLElement {
-      const textDiv = document.createElement("div");
-      textDiv.setAttribute("class", "section__article-div");
-      parent.appendChild(textDiv);
-      return textDiv;
-    }
-
-    function createLink(podcast: IPodcast, parent: HTMLElement): void {
-      const linkPlacement = document.createElement("a");
-      const linkText = document.createTextNode("Lyssna här");
-      linkPlacement.setAttribute("href", podcast.programurl);
-      linkPlacement.setAttribute("tabindex", "1");
-      linkPlacement.appendChild(linkText);
-      parent.appendChild(linkPlacement);
-    }
-    function createImg(podcast: IPodcast, parent: HTMLElement): void {
-      const imgPlacement = document.createElement("img");
-      imgPlacement.setAttribute("src", podcast.socialimage);
-      imgPlacement.setAttribute("alt", podcast.name || "Podcast-bild");
-      imgPlacement.setAttribute("width", "100");
-      imgPlacement.setAttribute("height", "100");
-      parent.appendChild(imgPlacement);
-    }
-
-    function createP(podcast: IPodcast, parent: HTMLElement): void {
-      const descPlacement = document.createElement("p");
-      const desc = document.createTextNode(podcast.description);
-      descPlacement.appendChild(desc);
-      parent.appendChild(descPlacement);
-    }
-
-    function createHeader(podcast: IPodcast, parent: HTMLElement): void {
-      const headerPlacement = document.createElement("h2");
-      const programName = document.createTextNode(podcast.name);
-      headerPlacement.appendChild(programName);
-      parent.appendChild(headerPlacement);
-    }
+    createPodcastElement(podcast, podCastContainer);
   });
+}
+
+function isPodcastValid(podcast: IPodcast): boolean {
+  return !!(
+    podcast.socialimage &&
+    podcast.name &&
+    podcast.description &&
+    podcast.programurl
+  );
+}
+
+function createPodcastElement(podcast: IPodcast, container: HTMLElement): void {
+  const articleElement = createArticleElement();
+
+  const textContainer = createTextContainer();
+  const imageElement = createImageElement(
+    podcast.socialimage,
+    `Bild för podcasten ${podcast.name}`,
+  );
+  const headerElement = createHeaderElement(podcast.name);
+  const descriptionElement = createDescriptionElement(podcast.description);
+  const linkElement = createLinkElement(podcast.programurl);
+
+  // Montera element
+  textContainer.append(headerElement, descriptionElement, linkElement);
+  articleElement.append(imageElement, textContainer);
+  container.appendChild(articleElement);
+}
+
+function createArticleElement(): HTMLElement {
+  const article = document.createElement("article");
+  article.className = "section__article-innerarticle";
+
+  return article;
+}
+
+function createTextContainer(): HTMLElement {
+  const div = document.createElement("div");
+  div.className = "section__article-div";
+  return div;
+}
+
+function createImageElement(src: string, alt: string): HTMLImageElement {
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = alt;
+  img.className = "podcast-image";
+  img.width = 100;
+  img.height = 100;
+  return img;
+}
+
+function createHeaderElement(title: string): HTMLElement {
+  const header = document.createElement("h2");
+  header.textContent = title;
+  return header;
+}
+
+function createDescriptionElement(description: string): HTMLElement {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = description;
+  return paragraph;
+}
+
+function createLinkElement(url: string): HTMLAnchorElement {
+  const link = document.createElement("a");
+  link.href = url;
+  link.textContent = "Lyssna här";
+
+  return link;
 }
 
 export default createHtml;

@@ -6,7 +6,7 @@ export async function getPodcasts() {
     .then((json) => json)
     .catch((error) => {
       // eslint-disable-next-line no-console
-      console.error("nått blev fel:", error);
+      console.error("Fel vid hämtning av poddar:", error);
       return null;
     });
 }

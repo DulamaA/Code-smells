@@ -12,17 +12,24 @@
       rel="stylesheet"
     />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
     <title>SR Humorprogram</title>
   </head>
   <body>
+    <!--------------huvudsida------------------------>
     <section class="section__podlist">
-      <button class="section__podlist-button toggle-btn" tabindex="1">
+      <!-----------knapp för tema ljus/mörkt------>
+      <button
+        class="section__podlist-button toggle-btn"
+        aria-label="Växla mellan ljust och mörkt läge"
+      >
         Välj ljust läge
       </button>
       <h1>SRs Humorprogram</h1>
+
+      <!--container för podcast-------------------->
       <article class="section__podlist-pods"></article>
     </section>
+
     <script type="module" src="/main.ts"></script>
   </body>
 </html>

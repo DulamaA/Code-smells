@@ -1,10 +1,10 @@
 import "./style.scss";
 import { createHtml } from "./src/ts/createHtml";
-import toggleLightMode from "./src/ts/toggleDarkmode";
+import initializeDarkModeToggle from "./src/ts/darkModeToggle";
 
-function init() {
-  toggleLightMode();
+function initializeApplication() {
+  initializeDarkModeToggle();
   createHtml();
 }
 
-init();
+initializeApplication();
