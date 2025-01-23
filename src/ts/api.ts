@@ -3,7 +3,7 @@ const PODCAST_API_URL = import.meta.env.VITE_PODCAST_API_URL;
 
 //------Kontrollera om variabeln är definierad--------
 if (!PODCAST_API_URL) {
-  throw new Error("vITE_PODCAST_API_URL är inte definierad i .env-filen");
+  throw new Error("VITE_PODCAST_API_URL är inte definierad i .env-filen");
 }
 
 //------Hämtar podcast-data från API:et---------------
