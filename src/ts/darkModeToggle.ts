@@ -7,9 +7,9 @@ export function toggleDarkMode(): void {
   document.body.classList.toggle("darkmode");
 
   if (document.body.classList.contains("darkmode")) {
-    darkModeToggleButton.textContent = "Aktivera ljusläge";
+    darkModeToggleButton.textContent = "Välj ljusläge";
   } else {
-    darkModeToggleButton.textContent = "Aktivera mörkt läge";
+    darkModeToggleButton.textContent = "Välj mörkt läge";
   }
 }
 
