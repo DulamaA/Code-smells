@@ -6,24 +6,26 @@ export async function createHtml() {
     ".section__podlist-pods",
   ) as HTMLElement | null;
 
+  //----- Avbryt funktionen om containern saknas--------
   if (!podCastContainer) {
     // eslint-disable-next-line no-console
     console.error("Podcast containern hittades inte.");
-    return; // Avbryt funktionen om containern saknas
+    return;
   }
 
   let podCasts: IPodcastsResponse;
 
   try {
-    // Försök att hämta data från API
+    //------Försök att hämta data från API---------------
     podCasts = await getPodcasts();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("Kunde inte hämta data från API", error);
-    return; // Avbryt om API-anropet misslyckas
+    //----- Avbryt om API-anropet misslyckas-------------
+    return;
   }
 
-  // Iterera över poddlistan och skapa artiklar
+  //--- Iterera över poddlistan och skapa artiklar--------
   podCasts.programs.forEach((podcast: IPodcast) => {
     if (!isPodcastValid(podcast)) {
       // eslint-disable-next-line no-console
@@ -77,7 +79,7 @@ function createTextContainer(): HTMLElement {
 function createImageElement(src: string, alt: string): HTMLImageElement {
   const img = document.createElement("img");
   img.src = src;
-  img.alt = alt;
+  img.alt = alt || "Bild saknar beskrivning";
   img.className = "podcast-image";
   img.width = 100;
   img.height = 100;
