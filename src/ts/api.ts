@@ -15,6 +15,7 @@ export async function getPodcasts() {
     }
     return await response.json();
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Fel vid hämtning av poddar:", error);
     return null;
   }
