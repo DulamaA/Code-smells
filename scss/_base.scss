@@ -1,4 +1,4 @@
-//---------------global variables-------------------------------
+//---------------globala variabler-------------------------------
 :root {
   --font-primary: "Source Sans Pro", sans-serif;
   --line-height: 1.5;
@@ -14,13 +14,15 @@
   --color-darkmode-text: #242424;
 }
 
-//----------------global styles-----------------------------------
+//----------------globala stilar-----------------------------------
 body {
   font-family: var(--font-primary);
   line-height: var(--line-height);
   font-size: var(--font-size-base);
   color: var(--color-text);
   background-color: var(--color-background);
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -43,6 +45,72 @@ a {
 
   &:hover,
   &:active {
+    color: var(--color-link-hover);
+  }
+}
+
+//----------------mörkt läge--------------------------------
+.darkmode {
+  background-color: var(--color-darkmode-background);
+  color: var(--color-darkmode-text);
+}
+
+.darkmode a {
+  color: var(--color-darkmode-text);
+}
+
+.darkmode a:hover,
+.darkmode a:active {
+  color: var(--color-link-hover);
+}
+
+//-----------komponent:podcast-lista-------------------------------------
+.podlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.podlist__item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.podlist__image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.podlist__text {
+  padding: 1rem;
+}
+
+.podlist__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.podlist__description {
+  font-size: var(--font-size-base);
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.podlist__link {
+  font-size: var(--font-size-base);
+  color: var(--color-link);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
     color: var(--color-link-hover);
   }
 }

@@ -1,5 +1,5 @@
 @media screen and (min-width: 1440px) {
-  .section__podlist-pods {
+  .podlist {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -8,5 +8,9 @@
 
   h1 {
     font-size: 48px;
+  }
+
+  .podlist__item {
+    margin-bottom: 1.5rem;
   }
 }

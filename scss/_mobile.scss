@@ -1,20 +1,15 @@
-.section__podlist-pods {
+.podlist {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.section__article-innerarticle {
+.podlist_item {
   margin-bottom: 1rem;
   max-width: 300px;
 }
 
-.podcast-image {
+.podlist_image {
   width: 100%;
   height: auto;
-}
-
-p {
-  font-size: var(--font-size-base);
-  margin: 0;
 }

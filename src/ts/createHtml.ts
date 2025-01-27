@@ -8,7 +8,7 @@ import { log, warn, error } from "./logger";
  */
 export async function createHtml() {
   const podCastContainer = document.querySelector(
-    ".section__podlist-pods",
+    ".podlist",
   ) as HTMLElement | null;
 
   //----- Kontrollera om podcast container finns--------
@@ -75,7 +75,7 @@ function createPodcastElement(podcast: IPodcast, container: HTMLElement): void {
 //Skapar ett article-element för att representera en podcast
 function createArticleElement(): HTMLElement {
   const article = document.createElement("article");
-  article.className = "section__article-innerarticle";
+  article.className = "podlist_item";
 
   return article;
 }
@@ -83,7 +83,7 @@ function createArticleElement(): HTMLElement {
 //Skapar en div-container för textinnehållet-------------------
 function createTextContainer(): HTMLElement {
   const div = document.createElement("div");
-  div.className = "section__article-div";
+  div.className = "podlist_text";
   return div;
 }
 
@@ -92,7 +92,7 @@ function createImageElement(src: string, alt: string): HTMLImageElement {
   const img = document.createElement("img");
   img.src = src;
   img.alt = alt || "Bild saknar beskrivning";
-  img.className = "podcast-image";
+  img.className = "podlist_image";
   img.width = 100;
   img.height = 100;
   return img;
@@ -102,6 +102,7 @@ function createImageElement(src: string, alt: string): HTMLImageElement {
 function createHeaderElement(title: string): HTMLElement {
   const header = document.createElement("h2");
   header.textContent = title;
+  header.className = "podlist_title";
   return header;
 }
 
@@ -117,6 +118,7 @@ function createLinkElement(url: string): HTMLAnchorElement {
   const link = document.createElement("a");
   link.href = url;
   link.textContent = "Lyssna här";
+  link.className = "podlist_link";
   link.setAttribute("aria-label", "Lyssna på podcastens avsnitt");
 
   return link;
