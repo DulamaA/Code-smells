@@ -1,20 +1,12 @@
 @media screen and (min-width: 1440px) {
-  .podlist-container {
-    padding: 3rem;
-  }
-
   .podlist {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    padding: 0;
+    padding: 3rem;
   }
 
   h1 {
     font-size: 48px;
-  }
-
-  .podlist__item {
-    margin-bottom: 1.5rem;
   }
 }

@@ -11,8 +11,8 @@ function initializeApplication() {
 
     createHtml();
     log("HTML-innehållet har genererats.");
-  } catch {
-    error("Ett fel uppstod vid initialisering av applikationen: ${err}");
+  } catch (err) {
+    error(`Ett fel uppstod vid initialisering av applikationen: ${err}`);
   }
 }
 

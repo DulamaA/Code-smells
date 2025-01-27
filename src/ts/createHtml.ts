@@ -8,7 +8,7 @@ import { log, warn, error } from "./logger";
  */
 export async function createHtml() {
   const podlistContainer = document.querySelector(
-    ".podlist-container",
+    ".podlist",
   ) as HTMLElement | null;
 
   //----- Kontrollera om podcast container finns--------
@@ -28,7 +28,6 @@ export async function createHtml() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
     error("Kunde inte hämta data från API: ${err}");
-    //----- Avbryt om API-anropet misslyckas-------------
     return;
   }
 
@@ -93,8 +92,6 @@ function createImageElement(src: string, alt: string): HTMLImageElement {
   img.src = src;
   img.alt = alt || "Bild saknar beskrivning";
   img.className = "podlist_image";
-  img.width = 100;
-  img.height = 100;
   return img;
 }
 
@@ -110,6 +107,7 @@ function createHeaderElement(title: string): HTMLElement {
 function createDescriptionElement(description: string): HTMLElement {
   const paragraph = document.createElement("p");
   paragraph.textContent = description;
+  paragraph.className = "podlist_description";
   return paragraph;
 }
 
