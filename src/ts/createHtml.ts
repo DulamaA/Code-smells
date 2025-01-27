@@ -1,5 +1,6 @@
 import { getPodcasts } from "./api";
 import { IPodcast, IPodcastsResponse } from "./interfaces";
+import { log, warn, error } from "./logger";
 
 /**
  * Huvudfunktion för att skapa och rendera podcast listan
@@ -12,8 +13,7 @@ export async function createHtml() {
 
   //----- Kontrollera om podcast container finns--------
   if (!podCastContainer) {
-    // eslint-disable-next-line no-console
-    console.error("Podcast containern hittades inte.");
+    error("Podcast containern hittades inte.");
     //-----avbryt om containern saknas------------------
     return;
   }
@@ -22,10 +22,12 @@ export async function createHtml() {
 
   try {
     //------Hämta data från API--------------------------
+    log("Hämtar podcast-data från API...");
     podCasts = await getPodcasts();
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error("Kunde inte hämta data från API", error);
+    log("Podcast-data hämtades framgångsrikt.");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (err) {
+    error("Kunde inte hämta data från API: ${err}");
     //----- Avbryt om API-anropet misslyckas-------------
     return;
   }
@@ -33,12 +35,13 @@ export async function createHtml() {
   // Iterera över varje podcast och skapa dess HTML-element
   podCasts.programs.forEach((podcast: IPodcast) => {
     if (!isPodcastValid(podcast)) {
-      // eslint-disable-next-line no-console
-      console.warn("Hoppade över podcast med saknade fält", podcast);
+      warn("Hoppade över podcast med saknade fält");
       return;
     }
     createPodcastElement(podcast, podCastContainer);
   });
+
+  log("Podcast-listan har renderats.");
 }
 
 function isPodcastValid(podcast: IPodcast): boolean {
@@ -114,6 +117,7 @@ function createLinkElement(url: string): HTMLAnchorElement {
   const link = document.createElement("a");
   link.href = url;
   link.textContent = "Lyssna här";
+  link.setAttribute("aria-label", "Lyssna på podcastens avsnitt");
 
   return link;
 }
