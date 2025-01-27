@@ -65,11 +65,15 @@ a {
 }
 
 //-----------komponent:podcast-lista-------------------------------------
+.podlist-container {
+  padding: 2rem;
+  background-color: var(--color-background);
+}
+
 .podlist {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
 }
 
 .podlist__item {

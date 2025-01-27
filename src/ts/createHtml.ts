@@ -7,12 +7,12 @@ import { log, warn, error } from "./logger";
  * Hämtar data från API:et, validerar och generar HTML för varje podcast.
  */
 export async function createHtml() {
-  const podCastContainer = document.querySelector(
-    ".podlist",
+  const podlistContainer = document.querySelector(
+    ".podlist-container",
   ) as HTMLElement | null;
 
   //----- Kontrollera om podcast container finns--------
-  if (!podCastContainer) {
+  if (!podlistContainer) {
     error("Podcast containern hittades inte.");
     //-----avbryt om containern saknas------------------
     return;
@@ -38,7 +38,7 @@ export async function createHtml() {
       warn("Hoppade över podcast med saknade fält");
       return;
     }
-    createPodcastElement(podcast, podCastContainer);
+    createPodcastElement(podcast, podlistContainer);
   });
 
   log("Podcast-listan har renderats.");
