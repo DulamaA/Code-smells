@@ -6,8 +6,15 @@
 
 .section__article-innerarticle {
   margin-bottom: 1rem;
+  max-width: 300px;
 }
 
-h1 {
-  font-size: 24px;
+.podcast-image {
+  width: 100%;
+  height: auto;
+}
+
+p {
+  font-size: var(--font-size-base);
+  margin: 0;
 }
