@@ -1,77 +1,84 @@
+//---------------globala variabler-------------------------------
+:root {
+  --font-primary: "Source Sans Pro", sans-serif;
+  --line-height: 1.5;
+  --font-size-base: 1rem;
+  --font-size-h1: 40px;
+  --font-size-h2: 1.25rem;
+
+  --color-text: rgba(255, 255, 255, 0.87);
+  --color-background: #242424;
+  --color-link: rgba(255, 255, 255, 0.87);
+  --color-link-hover: rgb(85, 85, 218);
+  --color-darkmode-background: antiquewhite;
+  --color-darkmode-text: #242424;
+}
+
+//----------------globala stilar-----------------------------------
 body {
-  font-family: "Source Sans Pro", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-.section__podlist-pods {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.section__article-innerarticle {
-  margin: 0 auto 1rem;
-  max-width: 300px;
-}
-
-.podcast-image {
-  margin-top: 0.5rem;
-  width: 100%;
-  height: auto;
-  max-width: 200px;
-  object-fit: cover;
-}
-
-p {
-  font-size: 1rem;
-  margin: 0;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
+  font-family: var(--font-primary);
+  line-height: var(--line-height);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 h1 {
-  font-size: 24px;
+  font-size: var(--font-size-h1);
   text-align: center;
 }
 
 h2 {
-  font-size: 1.25rem;
+  font-size: var(--font-size-h2);
+  margin: 0;
+}
+
+p {
   margin: 0;
 }
 
 a {
-  color: rgba(255, 255, 255, 0.87);
-  cursor: pointer;
-}
-a :active,
-a:hover {
-  color: rgb(85, 85, 218);
+  color: var(--color-link);
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: var(--color-link-hover);
+  }
 }
 
-//----dark mode style-------------------------------
+//----------------mörkt läge--------------------------------
 .darkmode {
-  background-color: antiquewhite;
-  color: #242424;
+  background-color: var(--color-darkmode-background);
+  color: var(--color-darkmode-text);
 }
+
 .darkmode a {
-  color: #242424;
+  color: var(--color-darkmode-text);
 }
-.darkmode a:active,
-.darkmode a:hover {
-  color: rgb(85, 85, 218);
+
+.darkmode a:hover,
+.darkmode a:active {
+  color: var(--color-link-hover);
+}
+
+//-----------komponent:podcast-lista-------------------------------------
+.podlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+
+  &__item {
+    margin: 0 auto 1rem;
+    max-width: 300px;
+
+    &__image {
+      margin-top: 0.5rem;
+      width: 100%;
+      height: auto;
+      max-width: 200px;
+      object-fit: cover;
+    }
+  }
 }

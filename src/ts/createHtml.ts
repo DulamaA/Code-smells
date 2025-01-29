@@ -7,12 +7,12 @@ import { log, warn, error } from "./logger";
  * Hämtar data från API:et, validerar och generar HTML för varje podcast.
  */
 export async function createHtml() {
-  const podCastContainer = document.querySelector(
-    ".section__podlist-pods",
+  const podlistContainer = document.querySelector(
+    ".podlist",
   ) as HTMLElement | null;
 
   //----- Kontrollera om podcast container finns--------
-  if (!podCastContainer) {
+  if (!podlistContainer) {
     error("Podcast containern hittades inte.");
     //-----avbryt om containern saknas------------------
     return;
@@ -28,7 +28,6 @@ export async function createHtml() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
     error("Kunde inte hämta data från API: ${err}");
-    //----- Avbryt om API-anropet misslyckas-------------
     return;
   }
 
@@ -38,7 +37,7 @@ export async function createHtml() {
       warn("Hoppade över podcast med saknade fält");
       return;
     }
-    createPodcastElement(podcast, podCastContainer);
+    createPodcastElement(podcast, podlistContainer);
   });
 
   log("Podcast-listan har renderats.");
@@ -75,7 +74,7 @@ function createPodcastElement(podcast: IPodcast, container: HTMLElement): void {
 //Skapar ett article-element för att representera en podcast
 function createArticleElement(): HTMLElement {
   const article = document.createElement("article");
-  article.className = "section__article-innerarticle";
+  article.className = "podlist_item";
 
   return article;
 }
@@ -83,7 +82,7 @@ function createArticleElement(): HTMLElement {
 //Skapar en div-container för textinnehållet-------------------
 function createTextContainer(): HTMLElement {
   const div = document.createElement("div");
-  div.className = "section__article-div";
+  div.className = "podlist_text";
   return div;
 }
 
@@ -92,9 +91,7 @@ function createImageElement(src: string, alt: string): HTMLImageElement {
   const img = document.createElement("img");
   img.src = src;
   img.alt = alt || "Bild saknar beskrivning";
-  img.className = "podcast-image";
-  img.width = 100;
-  img.height = 100;
+  img.className = "podlist_image";
   return img;
 }
 
@@ -102,6 +99,7 @@ function createImageElement(src: string, alt: string): HTMLImageElement {
 function createHeaderElement(title: string): HTMLElement {
   const header = document.createElement("h2");
   header.textContent = title;
+  header.className = "podlist_title";
   return header;
 }
 
@@ -109,6 +107,7 @@ function createHeaderElement(title: string): HTMLElement {
 function createDescriptionElement(description: string): HTMLElement {
   const paragraph = document.createElement("p");
   paragraph.textContent = description;
+  paragraph.className = "podlist_description";
   return paragraph;
 }
 
@@ -117,6 +116,7 @@ function createLinkElement(url: string): HTMLAnchorElement {
   const link = document.createElement("a");
   link.href = url;
   link.textContent = "Lyssna här";
+  link.className = "podlist_link";
   link.setAttribute("aria-label", "Lyssna på podcastens avsnitt");
 
   return link;

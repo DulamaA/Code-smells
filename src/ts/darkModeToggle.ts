@@ -1,6 +1,7 @@
 const darkModeToggleButton = document.querySelector(
   ".toggle-btn",
 ) as HTMLButtonElement;
+
 darkModeToggleButton.addEventListener("click", toggleDarkMode);
 
 export function toggleDarkMode(): void {
