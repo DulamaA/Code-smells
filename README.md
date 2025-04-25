@@ -7,7 +7,7 @@ G
 - [x ] Enhetlig kodkvalitet
 - [x ] Mobilvyn
 - [x ] Språk
-- [ x] Rensa loggning
+- [x ] Rensa loggning
 - [x ] Dokumentation
 - [x ] Tillgänglighet (bilder)
 - [x ] Refaktorera funktioner
