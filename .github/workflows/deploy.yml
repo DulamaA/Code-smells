@@ -41,8 +41,7 @@ jobs:
         run: npm install
       - name: Build with Vite
         run: npm run build
-        env:
-          VITE_PODCAST_API_URL: ${{ secrets.VITE_PODCAST_API_URL }}
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
