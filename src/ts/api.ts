@@ -1,10 +1,5 @@
-//------Hämta API-adressen från miljövariabeln--------
-const PODCAST_API_URL = import.meta.env.VITE_PODCAST_API_URL;
+const PODCAST_API_URL = 'https://api.sr.se/api/v2/programs/index?programcategoryid=133&format=json&pagination=false&indent=true&filter=program.archived&filterValue=false';
 
-//------Kontrollera om variabeln är definierad--------
-if (!PODCAST_API_URL) {
-  throw new Error("VITE_PODCAST_API_URL är inte definierad i .env-filen");
-}
 
 //------Hämtar podcast-data från API:et---------------
 export async function getPodcasts() {
